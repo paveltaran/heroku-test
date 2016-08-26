@@ -1,12 +1,6 @@
-require('babel-register')({
-	"presets": ["es2015", "react", "stage-0", "stage-1"],
-	"plugins": ["transform-decorators-legacy"],
-	ignore: false,
-	only: /(db)|(checker\.js)/
-});
 const db = require('db');
 const debug = require('debug')(__filename);
-import autobind from 'autobind-decorator'
+const autobind = require('autobind-decorator');
 const amqp = require('amqplib');
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://localhost';
 const REQ_COUNT = parseInt(process.env.REQ_COUNT || 2);
