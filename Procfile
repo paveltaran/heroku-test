@@ -1,1 +1,1 @@
-worker: babel-node checker.js
+worker: babel-node --presets es2015,stage-0,stage-1 --plugins transform-decorators-legacy checker.js
