@@ -25,7 +25,7 @@ class Sender {
 		this.connection = await amqp.connect(RABBITMQ_URL);
 		this.channel = await this.connection.createChannel();
 		this.channel.assertQueue(this.channelName, {durable: true}).then(console.log);
-		let reader = db.wordpress.website.toStream();
+		let reader = db.wordpress.website.filter(db.r.row.hasField('status').not()).toStream();
 		reader.pipe(this.sendStream).on('finish', _=> {
 			console.log('Done');
 		});
