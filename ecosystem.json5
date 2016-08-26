@@ -2,7 +2,7 @@
 	apps : [
 		{
 			name: "sender",
-			script: "sender.js",
+			script: "babel-sender.js",
 			interpreter: "babel-node"
 		}
 	],
