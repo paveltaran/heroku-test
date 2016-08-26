@@ -3,7 +3,7 @@ const debug = require('debug')(__filename);
 import autobind from 'autobind-decorator'
 const amqp = require('amqplib');
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://localhost';
-const REQ_COUNT = parseInt(process.env.REQ_COUNT || 1);
+const REQ_COUNT = parseInt(process.env.REQ_COUNT || 2);
 const Website = db.wordpress.website;
 
 
