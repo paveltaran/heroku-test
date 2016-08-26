@@ -8,7 +8,9 @@ const util = require('util');
 const Writable = stream.Writable;
 const amqp = require('amqplib');
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://localhost';
+import {EventEmitter} from 'events'
 
+const ee = new EventEmitter()
 
 @autobind
 class Sender {
@@ -29,6 +31,8 @@ class Sender {
 		reader.pipe(this.sendStream).on('finish', _=> {
 			console.log('Done');
 		});
+		clearInterval(this._checkQueueLength);
+		this._checkQueueLength = setInterval(this.checkQueueLength,1000);
 	}
 
 	createSendStream() {
@@ -36,10 +40,16 @@ class Sender {
 			Writable.call(this, options);
 		};
 		util.inherits(SendStream, Writable);
+		let i = 0;
 		SendStream.prototype._write = (website, enc, callback) => {
 			let msg = JSON.stringify(website);
 			this.channel.sendToQueue(this.channelName, new Buffer(msg), {persistent: true});
-			this.checkQueueLength(callback);
+			if (++i > 1000) {
+				i = 0;
+				this.checkQueueLength(callback)
+			} else {
+				callback()
+			}
 		};
 		this.sendStream = new SendStream({objectMode: true});
 	}
@@ -47,11 +57,13 @@ class Sender {
 	async checkQueueLength(callback) {
 		let {messageCount} = await this.channel.checkQueue(this.channelName);
 		console.log('checkQueueLength',messageCount);
-		if (messageCount === undefined || messageCount >= this.maxCount)
-			return setTimeout(_=>{
+		if (messageCount === undefined || messageCount >= this.maxCount) {
+			setTimeout(_=>{
 				this.checkQueueLength(callback)
-			},200);
-		callback();
+			},200)
+		} else {
+			callback()
+		}
 	}
 }
 
