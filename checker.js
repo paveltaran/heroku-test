@@ -1,6 +1,6 @@
 const db = require('db');
 const debug = require('debug')(__filename);
-const autobind = require('autobind-decorator');
+import autobind from 'autobind-decorator'
 const amqp = require('amqplib');
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://localhost';
 const REQ_COUNT = parseInt(process.env.REQ_COUNT || 2);
