@@ -1,1 +1,1 @@
-worker: babel-node --presets es2015,stage-0,stage-1 --plugins transform-decorators checker.js
+worker: babel-node heroku-checker.js
