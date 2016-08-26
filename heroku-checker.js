@@ -1,4 +1,3 @@
-process.env.RETHINKDB_URL = "rethinkdb://46.8.45.97/gambling";
 require('babel-register')({
 	"presets": ["es2015", "react", "stage-0", "stage-1"],
 	"plugins": ["transform-decorators-legacy"],

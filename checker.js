@@ -1,3 +1,4 @@
+process.env.RETHINKDB_URL = "rethinkdb://46.8.45.97/gambling";
 const db = require('db');
 const debug = require('debug')(__filename);
 import autobind from 'autobind-decorator'
