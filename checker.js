@@ -1,7 +1,9 @@
-require('babel-register')({
+/*require('babel-register')({
 	"presets": ["es2015", "react", "stage-0", "stage-1"],
-	"plugins": ["transform-decorators-legacy"]
-});
+	"plugins": ["transform-decorators-legacy"],
+	ignore: false,
+	only: /(db)|(checker)/
+});*/
 const db = require('db');
 const debug = require('debug')(__filename);
 import autobind from 'autobind-decorator'
