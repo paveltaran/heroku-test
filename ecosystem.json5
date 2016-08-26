@@ -1,0 +1,20 @@
+{
+	apps : [
+		{
+			name: "sender",
+			script: "sender.js",
+			interpreter: "babel-node"
+		}
+	],
+
+	deploy : {
+		prod : {
+			user : "root",
+			host : "46.8.45.97",
+			ref  : "origin/master",
+			repo : "https://_taran2L:BD2efZAQ6@bitbucket.org/_gambling/check-wp.git",
+			path : "/root/check-wp",
+			"post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env production"
+		}
+	}
+}
