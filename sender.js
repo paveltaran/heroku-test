@@ -1,3 +1,5 @@
+process.env.RETHINKDB_URL = "rethinkdb://46.8.45.97/gambling";
+process.env.RABBITMQ_URL = "amqp://yourName:yourPass123@46.8.45.97";
 const db = require('db');
 const debug = require('debug')(__filename);
 import autobind from 'autobind-decorator'
@@ -23,7 +25,7 @@ class Sender {
 		this.connection = await amqp.connect(RABBITMQ_URL);
 		this.channel = await this.connection.createChannel();
 		this.channel.assertQueue(this.channelName, {durable: true}).then(console.log);
-		let reader = db.wordpress.website.filter(db.r.row.hasFields('path').not()).toStream();
+		let reader = db.wordpress.website.filter().toStream();
 		reader.pipe(this.sendStream).on('finish', _=> {
 			console.log('Done');
 		});
