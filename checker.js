@@ -1,5 +1,6 @@
 require('babel-register')({
-	presets: [ 'es2015' ]
+	"presets": ["es2015", "react", "stage-0", "stage-1"],
+	"plugins": ["transform-decorators-legacy"]
 });
 const db = require('db');
 const debug = require('debug')(__filename);
