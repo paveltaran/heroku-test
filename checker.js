@@ -7,6 +7,9 @@ const REQ_COUNT = parseInt(process.env.REQ_COUNT || 2);
 const Website = db.wordpress.website;
 
 
+console.log('RABBITMQ_URL',RABBITMQ_URL);
+
+
 @autobind
 class Checker {
 
