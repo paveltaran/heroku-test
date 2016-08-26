@@ -1,3 +1,6 @@
+require('babel-register')({
+	presets: [ 'es2015' ]
+});
 const db = require('db');
 const debug = require('debug')(__filename);
 import autobind from 'autobind-decorator'
