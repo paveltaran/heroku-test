@@ -3,7 +3,7 @@ const debug = require('debug')(__filename);
 import autobind from 'autobind-decorator'
 const amqp = require('amqplib');
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://localhost';
-const REQ_COUNT = parseInt(process.env.REQ_COUNT || 50);
+const REQ_COUNT = parseInt(process.env.REQ_COUNT || 30);
 const Website = db.wordpress.website;
 
 
@@ -29,7 +29,7 @@ class Checker {
 	}
 
 	receivedMsg(msg) {
-		debug(msg.content.toString());
+		console.log(msg.content.toString());
 		let data = JSON.parse(msg.content.toString());
 		let website = new Website(data);
 		website.isNew = false;
