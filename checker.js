@@ -36,7 +36,10 @@ class Checker {
 		website.checkWordpress().then(res=>{
 			debug(res);
 			this.channel.ack(msg);	
-		}).catch(debug);
+		}).catch(e=>{
+			debug(e);
+			this.channel.ack(msg);
+		});
 	}
 
 }
