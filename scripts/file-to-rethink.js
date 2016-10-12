@@ -22,8 +22,8 @@ TransformStream.prototype._transform = function(chunk, encoding, callback) {
 	callback();
 };
 let ts = new TransformStream();
-//let filename = '/root/wordpress.txt';
-let filename = '/Users/admin/Projects/gambling/scripts/1.txt';
+let filename = '/root/wp.txt';
+//let filename = '/Users/admin/Projects/gambling/scripts/1.txt';
 var readStream = fs.createReadStream(filename);
 let table = r.table('wordpress__domains').toStream({writable:true});
 readStream.pipe(es.split()).pipe(ts).pipe(table)
