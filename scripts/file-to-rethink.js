@@ -14,7 +14,6 @@ util.inherits(TransformStream, Transform);
 var i = 0;
 TransformStream.prototype._transform = function(chunk, encoding, callback) {
 	let host = chunk.replace(/^www\./,'').trim();
-	console.log(i++,host);
 	let data = {
 		host:host
 	};
