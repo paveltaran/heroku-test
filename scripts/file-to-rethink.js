@@ -16,7 +16,7 @@ TransformStream.prototype._transform = function(chunk, encoding, callback) {
 	let host = chunk.replace(/^www\./,'').trim();
 	console.log(i++,host);
 	let data = {
-		id:host
+		host:host
 	};
 	this.push(data);
 	callback();
