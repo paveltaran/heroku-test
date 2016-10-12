@@ -1,5 +1,5 @@
-process.env.RETHINKDB_URL = "rethinkdb://46.8.45.97/gambling";
-process.env.RABBITMQ_URL = "amqp://yourName:yourPass123@46.8.45.97";
+process.env.RETHINKDB_URL = "rethinkdb://207.38.84.54/gambling";
+process.env.RABBITMQ_URL = "amqp://guest:guest@207.38.84.54";
 const db = require('db');
 const debug = require('debug')(__filename);
 import autobind from 'autobind-decorator'
@@ -10,7 +10,6 @@ const amqp = require('amqplib');
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://localhost';
 import {EventEmitter} from 'events'
 
-const ee = new EventEmitter()
 
 @autobind
 class Sender {
@@ -31,8 +30,6 @@ class Sender {
 		reader.pipe(this.sendStream).on('finish', _=> {
 			console.log('Done');
 		});
-		clearInterval(this._checkQueueLength);
-		this._checkQueueLength = setInterval(this.checkQueueLength,1000);
 	}
 
 	createSendStream() {
