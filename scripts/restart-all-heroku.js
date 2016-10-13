@@ -1,6 +1,6 @@
 import {exec} from 'child_process'
 let apps = `
-secure-oasis-63500
+wp-checker-01
 wp-checker-02
 wp-checker-03
 wp-checker-04
@@ -22,10 +22,10 @@ wp-checker-19
 wp-checker-20
 `.trim().split('\n');
 
-async function restartNext() {
+function restartNext() {
 	if (!apps.length) return
 	let app = apps.shift();
-	exec("heroku restart -a "+app,(...a)=>{
+	exec("heroku ps:scale web=0 worker=1 -a "+app,(...a)=>{
 		console.log(...a);
 		restartNext();
 	});
