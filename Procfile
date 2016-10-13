@@ -1,1 +1,1 @@
-worker: babel-node heroku-checker.js
+worker: babel-node checker.js
