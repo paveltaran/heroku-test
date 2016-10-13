@@ -18,6 +18,7 @@
     "babel-register": "^6.16.3",
     "coffee-script": "^1.11.1",
     "jade": "^1.11.0",
+    "seokit-text": "git+https://_taran2L:kywege9o7@bitbucket.org/_webmaster/seokit-text",
     "seokit-db": "git+https://_taran2L:kywege9o7@bitbucket.org/_webmaster/seokit-db",
     "utf8": "^2.1.1"
   },
